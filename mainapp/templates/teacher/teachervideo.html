@@ -1,0 +1,55 @@
+<!-- <h2>Upload Video</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Upload</button>
+</form>
+
+<h3>Your Videos</h3>
+<ul>
+  {% for video in videos %}
+    <li>
+      <strong>{{ video.title }}</strong><br>
+      <video width="320" height="240" controls>
+        <source src="{{ video.video_file.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </li>
+  {% endfor %}
+</ul> -->
+<h2>Upload a New Video</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>
+        {{ form.title.label_tag }}<br>
+        {{ form.title }}
+    </p>
+    <p>
+        {{ form.description.label_tag }}<br>
+        {{ form.description }}
+    </p>
+    <p>
+        {{ form.video_file.label_tag }}<br>
+        {{ form.video_file }}
+    </p>
+
+    <button type="submit">Upload</button>
+
+    {% if form.errors %}
+        <div style="color: red;">{{ form.errors }}</div>
+    {% endif %}
+</form>
+
+<h3>Your Uploaded Videos</h3>
+<ul>
+  {% for video in videos %}
+    <li>
+      <strong>{{ video.title }}</strong><br>
+      <video width="320" height="240" controls>
+        <source src="{{ video.video_file.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p>{{ video.description }}</p>
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,171 @@
+{% extends 'student/student_base.html' %}
+
+{% block title %}
+    Student - Dashboard
+{% endblock %}
+
+{% block body %}
+<div class="bg-dark text-white text-center py-3 fs-3 fw-bold">
+    Welcome to the Student Panel
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+    <div class="container" style="margin: 100px;">
+        <div class="contanier" style="margin: 100px;"> 
+          
+   <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar {
+      height: 100vh;
+      width: 60px;
+      background-color: #2c3e50;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-x: hidden;
+      transition: width 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+
+    .sidebar.open {
+      width: 200px;
+      align-items: flex-start;
+      padding-left: 20px;
+    }
+
+    .toggle-btn {
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 40px;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .sidebar.open a {
+      opacity: 1;
+    }
+
+    .content {
+      margin-left: 60px;
+      padding: 20px;
+      transition: margin-left 0.3s ease;
+    }
+
+    .sidebar.open ~ .content {
+      margin-left: 200px;
+    }
+  </style>
+</head>
+<body>
+   
+  <!-- Sidebar -->
+   <div class="sidebar" id="sidebar">
+    <i class="fas fa-bars toggle-btn" onclick="toggleSidebar()"></i>
+    <a href="{% url 'student_dashboard' %}">Dashboard</a>
+    <a href="{% url 'student_settings' %}">Settings</a>
+    <a href="{% url 'student_logout' %}">Logout</a> 
+  </div> 
+
+  <!-- Page Content -->
+ 
+
+   <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("open");
+    }
+  </script> 
+<style>
+        .card{
+            box-shadow: 15px 15px 25px 1px black;
+        }
+    </style>
+</head>
+
+
+<body>
+    
+
+       
+        <a href="{% url 'view_notices' %}" class="btn btn-warning" style="float:inline-start; margin-top: -40px;">View Notices</a>
+        <table class="table">
+
+            <tr>
+                <th>Student Name</th>
+                <td>{{student.full_name}}</td>
+
+                <th>Father's Name</th>
+                <td>{{student.father_name}}</td>
+            </tr>
+
+            <tr>
+                <th>Gender</th>
+                <td>{{student.gender}}</td>
+
+                <th>Mother's Name</th>
+                <td>{{student.mother_name}}</td>
+            </tr>
+
+            <tr>
+                <th>Contact Number</th>
+                <td>{{student.contact_num}}</td>
+
+                <th>Email</th>
+                <td>{{student.email}}</td>
+            </tr>
+
+            <tr>
+                <th>Address</th>
+                <td>{{student.address}}</td>
+
+                <th>City</th>
+                <td>{{student.city}}</td>
+            </tr>
+
+            <tr>
+                <th>Student Id</th>
+                <td>{{student.stu_id}}</td>
+
+                <th>Date of Birth</th>
+                <td>{{student.date_of_birth}}</td>
+            </tr>
+
+            <tr>
+                <th>Course</th>
+                <td>{{student.course}}</td>
+
+                <th>User Name</th>
+                <td>{{student.user_name}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="container-fluid " style="margin-left: 50px;">
+    <h3>Available Videos</h3>
+<ul>
+  {% for video in videos %}
+    <li class="mx-auto">
+      <strong>{{ video.title }}</strong><br>
+      <video width="320" height="240" controls>
+        <source src="{{ video.video_file.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </li>
+  {% endfor %}
+</ul>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}
+    Admin - Dashboard
+{% endblock %}
+
+{% block body %}
+
+    <!-- <table class="" style="position: absolute; top: 200px; left: 50px;">
+        <tr>
+            <td>
+                <div class="card" style="width: 36rem; margin: 100px;">
+                    <div class="card-body">
+                      <h1 class="card-title text-danger">{{students.count}}</h1>
+                      <h4 class="card-text">Students</h4>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <div class="card" style="width: 36rem;">
+                    <div class="card-body">
+                      <h1 class="card-title text-danger">{{teachers.count}}</h1>
+                      <h4 class="card-text">Teachers</h4>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    </table> -->
+    <div class="row mt-5">
+        <div class="col-lg-6">
+            <h3>Student List</h3>
+             <ul>
+                {% for student in students %}
+                <li>{{ student.name }} ({{ student.user_name }})</li>
+                {% endfor %}
+             </ul>
+        </div>
+        <div class="col-lg-6">
+            <h3>Teacher List</h3>
+                <ul>
+                    {% for teacher in teachers %}
+                    <li>{{ teacher.full_name }} </li>
+                    <ul>
+                    <li>{{ teacher.contact_num}}</li>
+                    </ul>
+                    {% endfor %}
+                </ul>
+        </div>
+    </div>
+{% endblock %}
